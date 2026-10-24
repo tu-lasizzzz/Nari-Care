@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-import { Feather, Sparkles, Smartphone, ChevronDown } from 'lucide-react';
-import { PhoneMockup } from './PhoneMockup';
+import React from 'react';
+import { motion } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
 
 interface AngelWingsHeroProps {
-  onOpenDownload: () => void;
+  onOpenDownload?: () => void;
   currentFrame?: number;
 }
 
 export const AngelWingsHero: React.FC<AngelWingsHeroProps> = ({
-  onOpenDownload,
   currentFrame = 1,
 }) => {
-  const [viewMode, setViewMode] = useState<'video' | 'interactive'>('video');
-
-  // Fade out hero prompts as user scrubs through the frames
-  const promptOpacity = Math.max(0, 1 - (currentFrame - 1) / 35);
+  // Fade out hero quote and scroll hint as user scrolls to unfurl the wings
+  // Only displays on initial page load during the initial wing-opening sequence
+  const scrollFadeOpacity = Math.max(0, 1 - (currentFrame - 1) / 25);
 
   return (
     <section
@@ -22,69 +20,40 @@ export const AngelWingsHero: React.FC<AngelWingsHeroProps> = ({
       className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent select-none"
     >
       {/* =========================================================================
-          FOREGROUND CONTROLS & SERAPHIC OVERLAYS (z-30)
+          ETHEREAL HERO TEXT ANIMATION (Slow & Subtle Reveal on Initial Wing Opening)
+          "The universe assigned you an angelic body, but forgot to include a user manual. We wrote it."
           ========================================================================= */}
-      <div 
-        className="absolute top-28 z-30 flex flex-col items-center px-4 pointer-events-auto text-center transition-opacity duration-300"
-        style={{ opacity: viewMode === 'interactive' ? 1 : Math.max(0.25, promptOpacity) }}
+      <motion.div
+        initial={{ opacity: 0, y: 20, filter: 'blur(10px)', scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
+        transition={{ duration: 2.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-24 sm:top-28 md:top-32 z-30 max-w-2xl sm:max-w-3xl md:max-w-4xl px-6 text-center pointer-events-none transition-opacity duration-300"
+        style={{ opacity: scrollFadeOpacity }}
       >
-        {/* Seraphic Cycle Tracking Pill Kicker */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md mb-3 text-xs text-purple-200 shadow-xl">
-          <Feather size={12} className="text-cyan-300" />
-          <span>Seraphic Cycle Tracking & Astral Harmony</span>
-          <span className="text-stone-500">·</span>
-          <a
-            href="#wings-sanctuary"
-            className="text-cyan-300 hover:text-white font-medium flex items-center gap-1 cursor-pointer transition-colors"
-          >
-            Explore Wings Sanctuary ↓
-          </a>
-        </div>
+        <p className="ethereal-hero-text font-serif italic text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-[1.3] tracking-tight drop-shadow-sm select-none">
+          “The universe assigned you an angelic body, but forgot to include a user manual.{' '}
+          <span className="inline-block not-italic font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] tracking-normal mt-1 sm:mt-0">
+            We wrote it.”
+          </span>
+        </p>
+      </motion.div>
 
-        {/* Toggle between Scroll Animation & 3D Interactive Phone Dial */}
-        <div className="inline-flex items-center p-1 rounded-full bg-black/50 border border-white/10 backdrop-blur-md text-[11px] text-stone-300 gap-1 shadow-lg">
-          <button
-            onClick={() => setViewMode('video')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${
-              viewMode === 'video'
-                ? 'bg-purple-600/90 text-white font-medium shadow-[0_0_12px_rgba(168,85,247,0.5)]'
-                : 'hover:text-white text-stone-400'
-            }`}
-          >
-            <Sparkles size={12} className={viewMode === 'video' ? 'text-amber-300' : ''} />
-            Scroll Animation ({currentFrame} / 160)
-          </button>
-          <button
-            onClick={() => setViewMode('interactive')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${
-              viewMode === 'interactive'
-                ? 'bg-purple-600/90 text-white font-medium shadow-[0_0_12px_rgba(168,85,247,0.5)]'
-                : 'hover:text-white text-stone-400'
-            }`}
-          >
-            <Smartphone size={12} />
-            Interactive Dial
-          </button>
-        </div>
-      </div>
-
-      {/* Interactive 3D Dial Mode (optional toggle view) */}
-      {viewMode === 'interactive' && (
-        <div className="absolute inset-0 z-25 flex items-center justify-center pt-20 pointer-events-auto bg-black/50 backdrop-blur-xs animate-in fade-in">
-          <PhoneMockup />
-        </div>
-      )}
-
-      {/* Scroll guidance indicator - smoothly vanishes as user initiates scroll */}
-      <div
+      {/* =========================================================================
+          SCROLL GUIDANCE INDICATOR
+          Smoothly dissolves as user initiates scroll, never re-appearing downstairs
+          ========================================================================= */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, delay: 1.8 }}
         className="absolute bottom-6 z-30 flex flex-col items-center gap-1 text-[11px] text-stone-400 pointer-events-none transition-opacity duration-300"
-        style={{ opacity: promptOpacity }}
+        style={{ opacity: scrollFadeOpacity }}
       >
         <span className="font-mono tracking-widest uppercase text-purple-200 drop-shadow-sm">
           Scroll to unfurl wings & explore universe
         </span>
         <ChevronDown size={14} className="animate-bounce text-cyan-300" />
-      </div>
+      </motion.div>
     </section>
   );
 };

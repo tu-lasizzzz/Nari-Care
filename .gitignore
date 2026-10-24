@@ -1,2 +1,17 @@
 
 wingzz_frames_30fps.zip
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Vite & IDE cache
+.vite/
+.vscode/
+.idea/
+
+# Environment files
+.env
+.env.local

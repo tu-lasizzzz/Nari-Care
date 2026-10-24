@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 
-const TOTAL_FRAMES = 300;
+const TOTAL_FRAMES = 160;
 
 function getFrameUrl(index: number) {
   const pad = String(index).padStart(6, '0');

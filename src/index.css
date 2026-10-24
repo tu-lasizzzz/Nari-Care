@@ -3,7 +3,7 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0b0819;
+    background-color: #05030d;
     color: #f6f4eb;
   }
 
@@ -22,11 +22,11 @@
 }
 
 .planet-shadow-left {
-  box-shadow: inset -25px -25px 40px rgba(0, 0, 0, 0.75), inset 15px 15px 30px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: inset -25px -25px 40px rgba(0, 0, 0, 0.85), inset 15px 15px 30px rgba(255, 255, 255, 0.2), 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
 .planet-shadow-right {
-  box-shadow: inset -30px 20px 45px rgba(0, 0, 0, 0.8), inset 15px -15px 35px rgba(255, 255, 255, 0.25), 0 20px 50px rgba(0, 0, 0, 0.7);
+  box-shadow: inset -30px 20px 45px rgba(0, 0, 0, 0.9), inset 15px -15px 35px rgba(255, 255, 255, 0.25), 0 20px 60px rgba(0, 0, 0, 0.85);
 }
 
 /* Custom scrollbar for cosmic aesthetic */
@@ -34,16 +34,17 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0819;
+  background: #05030d;
 }
 ::-webkit-scrollbar-thumb {
-  background: #272044;
+  background: #1c233c;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #433878;
+  background: #2b3963;
 }
 
+/* Celestial keyframe animations */
 @keyframes celestial-float {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -62,14 +63,72 @@
   }
 }
 
-@keyframes wing-pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.95;
+@keyframes cosmic-swirl-slow {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
   50% {
-    transform: scale(1.02);
+    transform: rotate(180deg) scale(1.06);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes cosmic-swirl-reverse {
+  0% {
+    transform: rotate(360deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.05);
+  }
+}
+
+@keyframes cosmic-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(25px, -20px) scale(1.04);
+  }
+  66% {
+    transform: translate(-20px, 15px) scale(0.97);
+  }
+}
+
+@keyframes electric-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.5)) drop-shadow(0 0 45px rgba(14, 165, 233, 0.3));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 70px rgba(14, 165, 233, 0.55));
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
     opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+}
+
+@keyframes sparkle-flare {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
   }
 }
 
@@ -81,6 +140,26 @@
   animation: celestial-float-reverse 8s ease-in-out infinite;
 }
 
-.animate-wing-shimmer {
-  animation: wing-pulse 4.5s ease-in-out infinite;
+.animate-cosmic-swirl {
+  animation: cosmic-swirl-slow 45s linear infinite;
+}
+
+.animate-cosmic-swirl-rev {
+  animation: cosmic-swirl-reverse 55s linear infinite;
+}
+
+.animate-cosmic-drift {
+  animation: cosmic-drift 22s ease-in-out infinite;
+}
+
+.animate-electric-rim {
+  animation: electric-pulse 4s ease-in-out infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 5s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle-flare 3.5s ease-in-out infinite;
 }

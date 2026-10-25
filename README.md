@@ -8,11 +8,11 @@
 | :--- | :--- |
 | **Deployed App** | [Click here to view live deployment](#) *(Insert Deployed Link Here)* |
 | **Architecture Diagram** | [![Architecture diagram](https://gitdiagram.com/diagram-badge.svg)](https://gitdiagram.com/tu-lasizzzz/nari-care?utm_source=readme&utm_medium=badge) |
-| **Google Docs** | [View Project Documentation / Pitch Deck](#) *(Insert Google Docs Link Here)* |
-| **Google Drive** | [View Presentation Assets & APK/Builds](#) *(Insert Google Drive Link Here)* |
-| **Final YouTube Demo** | [Watch 3-Minute Walkthrough Video](#) *(Insert YouTube Link Here)* |
+| **Google Docs** | [https://docs.google.com/document/d/1_rmpQiaYQOLvrewDG7KkJJL9kUfoDHYx3snhC1vea1o/edit?usp=sharing](#)|
+| **Google Drive** | [https://drive.google.com/drive/folders/14r3TmnfC7gQeX0kBpmDLuGeOHvxZ4gSQ?usp=sharing](#)|
+| **Final YouTube Demo** | [Watch 3-Minute Walkthrough Video](#)  |
 |**First draft**   |[https://youtu.be/C3MCqfCTRh0](#)|
-
+|**ppt**   |[https://docs.google.com/presentation/d/1Nzc05PPsflgrja-rCZqPOkRmHP9BZkbe/edit?usp=sharing&ouid=100891964871094881017&rtpof=true&sd=true](#)|
 ---
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
